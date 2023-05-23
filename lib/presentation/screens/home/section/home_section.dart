@@ -1,13 +1,17 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:inventory_app/presentation/widgets/custom_app_bar.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inventory_app/presentation/screens/profile/cubit/profile_cubit.dart';
+import 'package:inventory_app/presentation/screens/profile/cubit/profile_state.dart';
 
 class HomeSection extends StatelessWidget {
   const HomeSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    context.read<ProfileCubit>().started();
+
     return Scaffold(
       body: ListView(
         children: [
@@ -19,20 +23,24 @@ class HomeSection extends StatelessWidget {
                 const SizedBox(width: 16),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'Good Morning',
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 16,
                       ),
                     ),
-                    Text(
-                      'Yehezkiel',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20,
-                      ),
+                    BlocBuilder<ProfileCubit, ProfileState>(
+                      builder: (context, state) {
+                        return Text(
+                          state.user.name,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 20,
+                          ),
+                        );
+                      },
                     ),
                   ],
                 )

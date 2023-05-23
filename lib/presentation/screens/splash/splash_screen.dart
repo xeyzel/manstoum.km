@@ -1,9 +1,12 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inventory_app/core/constant/image_asset_path.dart';
 import 'package:inventory_app/core/constant/route_name.dart';
+import 'package:inventory_app/core/constant/status.dart';
 import 'package:inventory_app/core/constant/string_resource.dart';
+import 'package:inventory_app/presentation/screens/splash/cubit/splash_cubit.dart';
+import 'package:inventory_app/presentation/screens/splash/cubit/splash_state.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -15,14 +18,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   Timer? _timer;
 
-  Future<void> _initial() async {
-    _timer = Timer(const Duration(milliseconds: 3000), () {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        RouteName.home,
-        (route) => false,
-      );
-    });
+  void _initial() async {
+    context.read<SplashCubit>().started();
   }
 
   @override
@@ -44,6 +41,29 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          BlocListener<SplashCubit, SplashState>(
+            listenWhen: (previous, current) {
+              return previous.status != current.status;
+            },
+            listener: (context, state) {
+              _timer = Timer(const Duration(milliseconds: 3000), () {
+                if (state.status == Status.success && state.userId != null) {
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    RouteName.home,
+                    (route) => false,
+                  );
+                } else {
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    RouteName.login,
+                    (route) => false,
+                  );
+                }
+              });
+            },
+            child: const SizedBox.shrink(),
+          ),
           Expanded(
             child: Center(
               child: Column(

@@ -5,4 +5,6 @@ class RouteName {
   static const createProduct = '/createProduct';
   static const transaction = '/transaction';
   static const splash = '/splash';
+  static const login = '/login';
+  static const register = '/register';
 }

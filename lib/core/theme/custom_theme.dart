@@ -19,9 +19,16 @@ class CustomTheme {
       ),
     );
 
+    final inputDecorationTheme = themeData.inputDecorationTheme.copyWith(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+    );
+
     return themeData.copyWith(
       elevatedButtonTheme: elevatedButtonTheme,
       scaffoldBackgroundColor: Colors.white,
+      inputDecorationTheme: inputDecorationTheme,
     );
   }
 }

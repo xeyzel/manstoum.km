@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:inventory_app/core/constant/string_resource.dart';
-import 'package:inventory_app/presentation/screen/home/bloc/home_state.dart';
-import 'package:inventory_app/presentation/screen/home/section/home_section.dart';
-import 'package:inventory_app/presentation/screen/profile/profile_screen.dart';
-import 'package:inventory_app/presentation/screen/transaction/transaction_screen.dart';
-import 'package:inventory_app/presentation/screen/warehouse/warehouse_screen.dart';
+import 'package:inventory_app/presentation/screens/profile/profile_screen.dart';
+import 'package:inventory_app/presentation/screens/transaction/transaction_screen.dart';
+import 'package:inventory_app/presentation/screens/warehouse/warehouse_screen.dart';
+
 
 import 'bloc/home_cubit.dart';
+import 'bloc/home_state.dart';
+import 'section/home_section.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
