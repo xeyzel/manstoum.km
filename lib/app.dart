@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inventory_app/core/constant/route_name.dart';
 import 'package:inventory_app/core/theme/custom_theme.dart';
-import 'package:inventory_app/data/model/register/register.dart';
+import 'package:inventory_app/presentation/screens/create_product/create_product_screen.dart';
+import 'package:inventory_app/presentation/screens/create_warehouse/create_warehouse_screen.dart';
+import 'package:inventory_app/presentation/screens/create_warehouse/cubit/create_warehouse_cubit.dart';
 import 'package:inventory_app/presentation/screens/login/cubit/login_cubit.dart';
 import 'package:inventory_app/presentation/screens/login/login_screen.dart';
 import 'package:inventory_app/presentation/screens/profile/cubit/profile_cubit.dart';
@@ -26,6 +28,7 @@ class App extends StatelessWidget {
         BlocProvider(create: (context) => LoginCubit()),
         BlocProvider(create: (context) => SplashCubit()),
         BlocProvider(create: (context) => ProfileCubit()),
+        BlocProvider(create: (context) => CreateWarehouseCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -36,6 +39,8 @@ class App extends StatelessWidget {
           RouteName.home: (context) => const HomeScreen(),
           RouteName.login: (context) => const LoginScreen(),
           RouteName.register: (context) => const RegisterScreen(),
+          RouteName.createProduct: (context) => const CreateProductScreen(),
+          RouteName.createWarehouse: (context) => const CreateWarehouseScreen(),
         },
       ),
     );

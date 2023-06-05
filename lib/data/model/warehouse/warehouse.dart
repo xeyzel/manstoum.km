@@ -8,7 +8,6 @@ class Warehouse with _$Warehouse {
   const factory Warehouse({
     @Default('') String id,
     @Default('') String name,
-    @Default('') String avatar,
     @Default('') String address,
     @Default('') String userId,
   }) = _Warehouse;

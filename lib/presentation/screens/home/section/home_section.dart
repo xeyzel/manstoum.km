@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inventory_app/core/constant/route_name.dart';
 import 'package:inventory_app/presentation/screens/profile/cubit/profile_cubit.dart';
 import 'package:inventory_app/presentation/screens/profile/cubit/profile_state.dart';
 
@@ -69,21 +70,23 @@ class HomeSection extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                     ),
                     color: Colors.cyan,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, RouteName.createWarehouse);
+                    },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: const [
                         Icon(
                           Icons.add,
                           color: Colors.white,
-                          size: 50,
+                          size: 30,
                         ),
                         SizedBox(height: 8),
                         Text(
                           'Warehouse',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: 18,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -99,21 +102,23 @@ class HomeSection extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                     ),
                     color: Colors.cyan,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, RouteName.createProduct);
+                    },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: const [
                         Icon(
                           Icons.add,
                           color: Colors.white,
-                          size: 50,
+                          size: 30,
                         ),
                         SizedBox(height: 8),
                         Text(
                           'Product',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 24,
+                            fontSize: 18,
                             fontWeight: FontWeight.w600,
                           ),
                         ),

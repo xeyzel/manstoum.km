@@ -22,7 +22,6 @@ Warehouse _$WarehouseFromJson(Map<String, dynamic> json) {
 mixin _$Warehouse {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get avatar => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
 
@@ -37,8 +36,7 @@ abstract class $WarehouseCopyWith<$Res> {
   factory $WarehouseCopyWith(Warehouse value, $Res Function(Warehouse) then) =
       _$WarehouseCopyWithImpl<$Res, Warehouse>;
   @useResult
-  $Res call(
-      {String id, String name, String avatar, String address, String userId});
+  $Res call({String id, String name, String address, String userId});
 }
 
 /// @nodoc
@@ -56,7 +54,6 @@ class _$WarehouseCopyWithImpl<$Res, $Val extends Warehouse>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? avatar = null,
     Object? address = null,
     Object? userId = null,
   }) {
@@ -68,10 +65,6 @@ class _$WarehouseCopyWithImpl<$Res, $Val extends Warehouse>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      avatar: null == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
               as String,
       address: null == address
           ? _value.address
@@ -92,8 +85,7 @@ abstract class _$$_WarehouseCopyWith<$Res> implements $WarehouseCopyWith<$Res> {
       __$$_WarehouseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id, String name, String avatar, String address, String userId});
+  $Res call({String id, String name, String address, String userId});
 }
 
 /// @nodoc
@@ -109,7 +101,6 @@ class __$$_WarehouseCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? avatar = null,
     Object? address = null,
     Object? userId = null,
   }) {
@@ -121,10 +112,6 @@ class __$$_WarehouseCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      avatar: null == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
               as String,
       address: null == address
           ? _value.address
@@ -142,11 +129,7 @@ class __$$_WarehouseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Warehouse implements _Warehouse {
   const _$_Warehouse(
-      {this.id = '',
-      this.name = '',
-      this.avatar = '',
-      this.address = '',
-      this.userId = ''});
+      {this.id = '', this.name = '', this.address = '', this.userId = ''});
 
   factory _$_Warehouse.fromJson(Map<String, dynamic> json) =>
       _$$_WarehouseFromJson(json);
@@ -159,9 +142,6 @@ class _$_Warehouse implements _Warehouse {
   final String name;
   @override
   @JsonKey()
-  final String avatar;
-  @override
-  @JsonKey()
   final String address;
   @override
   @JsonKey()
@@ -169,7 +149,7 @@ class _$_Warehouse implements _Warehouse {
 
   @override
   String toString() {
-    return 'Warehouse(id: $id, name: $name, avatar: $avatar, address: $address, userId: $userId)';
+    return 'Warehouse(id: $id, name: $name, address: $address, userId: $userId)';
   }
 
   @override
@@ -179,15 +159,13 @@ class _$_Warehouse implements _Warehouse {
             other is _$_Warehouse &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.userId, userId) || other.userId == userId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, avatar, address, userId);
+  int get hashCode => Object.hash(runtimeType, id, name, address, userId);
 
   @JsonKey(ignore: true)
   @override
@@ -207,7 +185,6 @@ abstract class _Warehouse implements Warehouse {
   const factory _Warehouse(
       {final String id,
       final String name,
-      final String avatar,
       final String address,
       final String userId}) = _$_Warehouse;
 
@@ -218,8 +195,6 @@ abstract class _Warehouse implements Warehouse {
   String get id;
   @override
   String get name;
-  @override
-  String get avatar;
   @override
   String get address;
   @override
