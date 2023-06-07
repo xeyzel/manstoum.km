@@ -2,6 +2,7 @@ import 'package:inventory_app/data/model/login/login.dart';
 import 'package:inventory_app/data/model/register/register.dart';
 import 'package:inventory_app/data/model/user/user.dart';
 import 'package:inventory_app/data/model/warehouse/warehouse.dart';
+import 'package:inventory_app/data/providers/product_provider.dart';
 import 'package:inventory_app/data/providers/shared_provider.dart';
 import 'package:inventory_app/data/providers/user_provider.dart';
 import 'package:inventory_app/data/providers/warehouse_provider.dart';
@@ -10,6 +11,7 @@ class UserRepository {
   final _userProvider = UserProvider();
   final _shared = SharedProvider();
   final _warehouseProvider = WarehouseProvider();
+  final _productProvider = ProductProvider();
 
   /// User Management
   Future<bool> register(Register register) => _userProvider.register(register);
@@ -32,6 +34,11 @@ class UserRepository {
   Future<bool> insertWarehouse(Warehouse warehouse) =>
       _warehouseProvider.insertOne(warehouse);
 
-  Future<Iterable<Warehouse>> findAllWarehouse() =>
-      _warehouseProvider.findAll();
+  Future<Iterable<Warehouse>> findAllWarehouse() async {
+    final userId = (await getUserId())!;
+    return _warehouseProvider.findAll(userId);
+  }
+
+  // //Product Management
+  // Future<bool> insertProduc
 }

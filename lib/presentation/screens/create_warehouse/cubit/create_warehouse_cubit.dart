@@ -14,7 +14,7 @@ class CreateWarehouseCubit extends Cubit<CreateWarehouseState> {
 
   void setAddress(String value) => emit(state.copyWith(address: value));
 
-  void insertWarehouse() async {
+  Future<bool> insertWarehouse() async {
     emit(state.copyWith(status: Status.loading));
     try {
       final userId = (await _repository.getUserId())!;
@@ -25,15 +25,16 @@ class CreateWarehouseCubit extends Cubit<CreateWarehouseState> {
       );
 
       final result = await _repository.insertWarehouse(warehouse);
-      if (!result) return;
 
       emit(
           state.copyWith(status: Status.success, message: 'Warehouse Created'));
+      return true;
     } on FirebaseException catch (error) {
       emit(state.copyWith(
         status: Status.failure,
         message: '${error.message}',
       ));
+      return false;
     }
   }
 

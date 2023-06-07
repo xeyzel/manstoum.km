@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:inventory_app/core/constant/route_name.dart';
 import 'package:inventory_app/core/theme/custom_theme.dart';
 import 'package:inventory_app/presentation/screens/create_product/create_product_screen.dart';
+import 'package:inventory_app/presentation/screens/create_product/cubit/create_product_cubit.dart';
 import 'package:inventory_app/presentation/screens/create_warehouse/create_warehouse_screen.dart';
 import 'package:inventory_app/presentation/screens/create_warehouse/cubit/create_warehouse_cubit.dart';
 import 'package:inventory_app/presentation/screens/login/cubit/login_cubit.dart';
@@ -29,6 +30,9 @@ class App extends StatelessWidget {
         BlocProvider(create: (context) => SplashCubit()),
         BlocProvider(create: (context) => ProfileCubit()),
         BlocProvider(create: (context) => CreateWarehouseCubit()),
+        BlocProvider(
+          create: (context) => CreateProductCubit(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -9,7 +9,7 @@ class ProductProvider {
     try {
       final data = product.toJson();
       data.remove('id');
-      final proudct = _collection.add(data);
+      final proudct = await _collection.add(data);
       return true;
     } on FirebaseException {
       rethrow;
@@ -22,7 +22,18 @@ class ProductProvider {
 
   void findOne(String id) {}
 
-  void findAll() {}
+  Future<Iterable<Product>> findAll(String userId) async {
+    try {
+      final snapshot = await _collection.get();
+
+      final products = snapshot.docs
+          .map((e) => Product.fromJson(e.data()).copyWith(id: e.id))
+          .where((element) => element.userId == userId);
+      return products;
+    } on FirebaseException {
+      rethrow;
+    }
+  }
 
   void findByUserIdAndWarehouseId() {}
 

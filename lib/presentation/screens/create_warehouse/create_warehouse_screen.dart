@@ -69,29 +69,42 @@ class _CreateWarehouseScreenState extends State<CreateWarehouseScreen> {
                 return previous.status != current.status;
               },
               listener: (context, state) {
-                if (state.status == Status.success) {
-                  context.read<HomeCubit>().setIndex(1);
+                // if (state.status == Status.success) {
+                //   Navigator.pushNamedAndRemoveUntil(
+                //     context,
+                //     RouteName.home,
+                //     (route) => false,
+                //   );
+                //   context.read<HomeCubit>().setIndex(1);
 
-                  Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    RouteName.home,
-                    (route) => false,
-                  );
+                // Utils.showToast(state.message, color: Colors.green);
+                // }
 
-                  Utils.showToast(state.message, color: Colors.green);
-                }
-
-                if (state.status == Status.failure) {
-                  Utils.showToast(state.message, color: Colors.red);
-                }
+                // if (state.status == Status.failure) {
+                //
+                // }
               },
               builder: (context, state) {
                 Widget widget = ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     final validate = _formKey.currentState?.validate();
                     if (!validate!) return;
 
-                    context.read<CreateWarehouseCubit>().insertWarehouse();
+                    final result = await context
+                        .read<CreateWarehouseCubit>()
+                        .insertWarehouse();
+                    if (result) {
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        RouteName.home,
+                        (route) => false,
+                      );
+                      context.read<HomeCubit>().setIndex(1);
+
+                      Utils.showToast(state.message, color: Colors.green);
+                    } else {
+                      Utils.showToast(state.message, color: Colors.red);
+                    }
                   },
                   child: const Text('Save'),
                 );

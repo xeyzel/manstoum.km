@@ -7,12 +7,26 @@ import 'package:inventory_app/presentation/screens/create_warehouse/cubit/create
 import 'package:inventory_app/presentation/widgets/center_loading.dart';
 import 'package:inventory_app/presentation/widgets/custom_app_bar.dart';
 
-class WarehouseScreen extends StatelessWidget {
+class WarehouseScreen extends StatefulWidget {
   const WarehouseScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  State<WarehouseScreen> createState() => _WarehouseScreenState();
+}
+
+class _WarehouseScreenState extends State<WarehouseScreen> {
+  void _intial() {
     context.read<CreateWarehouseCubit>().findAllWarehouse();
+  }
+
+  @override
+  void initState() {
+    _intial();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(
         title: StringResource.warehouse,

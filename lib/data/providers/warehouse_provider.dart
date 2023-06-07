@@ -16,16 +16,14 @@ class WarehouseProvider {
     }
   }
 
-  Future<Iterable<Warehouse>> findAll() async {
+  Future<Iterable<Warehouse>> findAll(String userId) async {
     try {
       final snapshot = await _collection.get();
-      snapshot.docs.forEach((element) {
-        print(element);
-      });
 
       return snapshot.docs
-          .map((e) => Warehouse.fromJson(e.data()).copyWith(id: e.id));
-    } on FirebaseFirestore {
+          .map((e) => Warehouse.fromJson(e.data()).copyWith(id: e.id))
+          .where((element) => element.userId == userId);
+    } on FirebaseException {
       rethrow;
     }
   }
