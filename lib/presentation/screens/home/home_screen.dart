@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:inventory_app/presentation/screens/product/product_screen.dart';
 import 'package:inventory_app/presentation/screens/profile/profile_screen.dart';
 import 'package:inventory_app/presentation/screens/transaction/transaction_screen.dart';
 import 'package:inventory_app/presentation/screens/warehouse/warehouse_screen.dart';
-
 
 import 'bloc/home_cubit.dart';
 import 'bloc/home_state.dart';
@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final _screens = [
     const HomeSection(),
     const WarehouseScreen(),
-    const TransactionScreen(),
+    const ProductScreen(),
     const ProfileScreen()
   ];
 

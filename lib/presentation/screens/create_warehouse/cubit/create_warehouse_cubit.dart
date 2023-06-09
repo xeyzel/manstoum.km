@@ -17,9 +17,7 @@ class CreateWarehouseCubit extends Cubit<CreateWarehouseState> {
   Future<bool> insertWarehouse() async {
     emit(state.copyWith(status: Status.loading));
     try {
-      final userId = (await _repository.getUserId())!;
       final warehouse = Warehouse(
-        userId: userId,
         name: state.name,
         address: state.address,
       );

@@ -29,6 +29,7 @@ mixin _$Product {
   String get createdAt => throw _privateConstructorUsedError;
   String get warehouseId => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
+  String get warehouseName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +50,8 @@ abstract class $ProductCopyWith<$Res> {
       int quantity,
       String createdAt,
       String warehouseId,
-      String userId});
+      String userId,
+      String warehouseName});
 }
 
 /// @nodoc
@@ -74,6 +76,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? createdAt = null,
     Object? warehouseId = null,
     Object? userId = null,
+    Object? warehouseName = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -112,6 +115,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      warehouseName: null == warehouseName
+          ? _value.warehouseName
+          : warehouseName // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -132,7 +139,8 @@ abstract class _$$_ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       int quantity,
       String createdAt,
       String warehouseId,
-      String userId});
+      String userId,
+      String warehouseName});
 }
 
 /// @nodoc
@@ -154,6 +162,7 @@ class __$$_ProductCopyWithImpl<$Res>
     Object? createdAt = null,
     Object? warehouseId = null,
     Object? userId = null,
+    Object? warehouseName = null,
   }) {
     return _then(_$_Product(
       id: null == id
@@ -192,6 +201,10 @@ class __$$_ProductCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      warehouseName: null == warehouseName
+          ? _value.warehouseName
+          : warehouseName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -208,7 +221,8 @@ class _$_Product implements _Product {
       this.quantity = 0,
       this.createdAt = '',
       this.warehouseId = '',
-      this.userId = ''});
+      this.userId = '',
+      this.warehouseName = ''});
 
   factory _$_Product.fromJson(Map<String, dynamic> json) =>
       _$$_ProductFromJson(json);
@@ -240,10 +254,13 @@ class _$_Product implements _Product {
   @override
   @JsonKey()
   final String userId;
+  @override
+  @JsonKey()
+  final String warehouseName;
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, image: $image, description: $description, price: $price, quantity: $quantity, createdAt: $createdAt, warehouseId: $warehouseId, userId: $userId)';
+    return 'Product(id: $id, name: $name, image: $image, description: $description, price: $price, quantity: $quantity, createdAt: $createdAt, warehouseId: $warehouseId, userId: $userId, warehouseName: $warehouseName)';
   }
 
   @override
@@ -263,13 +280,15 @@ class _$_Product implements _Product {
                 other.createdAt == createdAt) &&
             (identical(other.warehouseId, warehouseId) ||
                 other.warehouseId == warehouseId) &&
-            (identical(other.userId, userId) || other.userId == userId));
+            (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.warehouseName, warehouseName) ||
+                other.warehouseName == warehouseName));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, image, description,
-      price, quantity, createdAt, warehouseId, userId);
+      price, quantity, createdAt, warehouseId, userId, warehouseName);
 
   @JsonKey(ignore: true)
   @override
@@ -295,7 +314,8 @@ abstract class _Product implements Product {
       final int quantity,
       final String createdAt,
       final String warehouseId,
-      final String userId}) = _$_Product;
+      final String userId,
+      final String warehouseName}) = _$_Product;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$_Product.fromJson;
 
@@ -317,6 +337,8 @@ abstract class _Product implements Product {
   String get warehouseId;
   @override
   String get userId;
+  @override
+  String get warehouseName;
   @override
   @JsonKey(ignore: true)
   _$$_ProductCopyWith<_$_Product> get copyWith =>

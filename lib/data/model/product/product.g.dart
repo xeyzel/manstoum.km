@@ -16,6 +16,7 @@ _$_Product _$$_ProductFromJson(Map<String, dynamic> json) => _$_Product(
       createdAt: json['createdAt'] as String? ?? '',
       warehouseId: json['warehouseId'] as String? ?? '',
       userId: json['userId'] as String? ?? '',
+      warehouseName: json['warehouseName'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_ProductToJson(_$_Product instance) =>
@@ -29,4 +30,5 @@ Map<String, dynamic> _$$_ProductToJson(_$_Product instance) =>
       'createdAt': instance.createdAt,
       'warehouseId': instance.warehouseId,
       'userId': instance.userId,
+      'warehouseName': instance.warehouseName,
     };

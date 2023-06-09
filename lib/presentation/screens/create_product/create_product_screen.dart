@@ -1,13 +1,17 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:inventory_app/core/constant/route_name.dart';
+import 'package:inventory_app/core/constant/status.dart';
 import 'package:inventory_app/presentation/screens/create_product/cubit/create_product_cubit.dart';
 import 'package:inventory_app/presentation/screens/create_product/cubit/create_product_state.dart';
 import 'package:inventory_app/presentation/screens/create_warehouse/cubit/create_warehouse_cubit.dart';
 import 'package:inventory_app/presentation/screens/create_warehouse/cubit/create_warehouse_state.dart';
+import 'package:inventory_app/presentation/widgets/center_loading.dart';
 
 class CreateProductScreen extends StatefulWidget {
   const CreateProductScreen({Key? key}) : super(key: key);
@@ -36,17 +40,17 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
     final state = context.read<CreateProductCubit>().state;
     _name.text = state.name;
     _description.text = state.description;
-    _price.text = state.price.toString();
-    _quantity.text = state.quantity.toString();
   }
 
   void startCamera() async {
-    final resource = await _imagePicker.pickImage(source: ImageSource.camera);
+    final resource = await _imagePicker.pickImage(
+        source: ImageSource.camera, maxHeight: 500, maxWidth: 500);
     context.read<CreateProductCubit>().setImage(resource);
   }
 
   void startGallery() async {
-    final resource = await _imagePicker.pickImage(source: ImageSource.gallery);
+    final resource = await _imagePicker.pickImage(
+        source: ImageSource.gallery, maxHeight: 500, maxWidth: 500);
     context.read<CreateProductCubit>().setImage(resource);
   }
 
@@ -135,26 +139,38 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
               ),
               const SizedBox(height: 16),
               BlocBuilder<CreateWarehouseCubit, CreateWarehouseState>(
-                builder: (context, state) {
-                  return DropdownButton(
-                    items: [
-                      DropdownMenuItem(
-                        child: Text(
-                            'Choose Warehouse                                            '),
-                      ),
-                      ...state.warehouses.map(
-                        (e) => DropdownMenuItem(
-                          value: e.id,
-                          child: Text(e.name),
-                        ),
-                      ),
-                    ],
-                    onChanged: (value) {
-                      if (value != null) {
-                        context
-                            .read<CreateProductCubit>()
-                            .setWarehouseId(value);
-                      }
+                builder: (context, warehouseState) {
+                  if (warehouseState.status == Status.loading) {
+                    return CenterLoading();
+                  }
+                  return BlocBuilder<CreateProductCubit, CreateProductState>(
+                    builder: (context, state) {
+                      return DropdownButton(
+                        value: state.WarehouseId,
+                        items: [
+                          const DropdownMenuItem(
+                              value: '',
+                              child: Text(
+                                'Choose Warehouse ',
+                                style: TextStyle(
+                                  color: Colors.red,
+                                ),
+                              )),
+                          ...warehouseState.warehouses.map(
+                            (e) => DropdownMenuItem(
+                              value: e.id,
+                              child: Text(e.name),
+                            ),
+                          ),
+                        ],
+                        onChanged: (value) {
+                          if (value != null) {
+                            context
+                                .read<CreateProductCubit>()
+                                .setWarehouseId(value);
+                          }
+                        },
+                      );
                     },
                   );
                 },
@@ -215,9 +231,24 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
               SizedBox(
                 height: 24,
               ),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text("Save"),
+              BlocConsumer<CreateProductCubit, CreateProductState>(
+                listenWhen: (previous, current) {
+                  return previous.status != current.status;
+                },
+                listener: (context, state) {
+                  if (state.status == Status.success) {
+                    Navigator.pushReplacementNamed(
+                        context, RouteName.listProduct);
+                  }
+                },
+                builder: (context, state) {
+                  return ElevatedButton(
+                    onPressed: () {
+                      context.read<CreateProductCubit>().insertProduct();
+                    },
+                    child: Text("Save"),
+                  );
+                },
               ),
               SizedBox(
                 height: 50,

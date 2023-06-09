@@ -15,6 +15,7 @@ class Product with _$Product {
     @Default('') String createdAt,
     @Default('') String warehouseId,
     @Default('') String userId,
+    @Default('') String warehouseName,
   }) = _Product;
 
   factory Product.fromJson(Map<String, dynamic> json) =>

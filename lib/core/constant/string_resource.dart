@@ -6,6 +6,7 @@ class StringResource {
   static const openSans = 'OpenSans';
   static const home = 'Home';
   static const warehouse = 'Warehouse';
+  static const product = 'Product';
   static const transaction = 'Transaction';
   static const profile = 'Profile';
 }

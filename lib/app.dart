@@ -8,6 +8,7 @@ import 'package:inventory_app/presentation/screens/create_warehouse/create_wareh
 import 'package:inventory_app/presentation/screens/create_warehouse/cubit/create_warehouse_cubit.dart';
 import 'package:inventory_app/presentation/screens/login/cubit/login_cubit.dart';
 import 'package:inventory_app/presentation/screens/login/login_screen.dart';
+import 'package:inventory_app/presentation/screens/product/product_screen.dart';
 import 'package:inventory_app/presentation/screens/profile/cubit/profile_cubit.dart';
 import 'package:inventory_app/presentation/screens/register/cubit/register_cubit.dart';
 import 'package:inventory_app/presentation/screens/register/register_screen.dart';
@@ -44,6 +45,7 @@ class App extends StatelessWidget {
           RouteName.login: (context) => const LoginScreen(),
           RouteName.register: (context) => const RegisterScreen(),
           RouteName.createProduct: (context) => const CreateProductScreen(),
+          RouteName.listProduct: (context) => const ProductScreen(),
           RouteName.createWarehouse: (context) => const CreateWarehouseScreen(),
         },
       ),

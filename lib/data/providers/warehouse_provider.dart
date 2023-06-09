@@ -5,6 +5,11 @@ class WarehouseProvider {
   static final _instance = FirebaseFirestore.instance;
   static final _collection = _instance.collection('warehouses');
 
+  Future<Warehouse> findOne(String warehouseId) async {
+    final snapshot = await _collection.doc(warehouseId).get();
+    return Warehouse.fromJson(snapshot.data()!).copyWith(id: snapshot.id);
+  }
+
   Future<bool> insertOne(Warehouse warehouse) async {
     final data = warehouse.toJson();
     data.remove('id');
@@ -27,8 +32,6 @@ class WarehouseProvider {
       rethrow;
     }
   }
-
-  void findOne() {}
 
   void updateOne() {}
 

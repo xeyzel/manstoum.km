@@ -193,14 +193,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.5.1"
-  cloudinary_public:
+  cloudinary:
     dependency: "direct main"
     description:
-      name: cloudinary_public
-      sha256: "5fcb5046239bb9701c14f4207c19f272753000e16717f82721ba22d0542537d0"
+      name: cloudinary
+      sha256: "58271a4a91c37219bfef9bbffeb1b68c5788fe7d628df256bb250d2b5a4ae91c"
       url: "https://pub.dev"
     source: hosted
-    version: "0.21.0"
+    version: "1.1.1"
   code_builder:
     dependency: transitive
     description:
