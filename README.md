@@ -3,10 +3,10 @@
 ## Done
 
 - insert Warehouse
+- insert product
 
 ## On going
 
-- insert product
 - update product
 - delete product
 - update warehouse
