@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:inventory_app/core/constant/route_name.dart';
 import 'package:inventory_app/core/constant/status.dart';
+import 'package:inventory_app/core/util/utils.dart';
 import 'package:inventory_app/presentation/screens/create_product/cubit/create_product_cubit.dart';
 import 'package:inventory_app/presentation/screens/create_product/cubit/create_product_state.dart';
 import 'package:inventory_app/presentation/screens/create_warehouse/cubit/create_warehouse_cubit.dart';
@@ -236,18 +237,36 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                   return previous.status != current.status;
                 },
                 listener: (context, state) {
-                  if (state.status == Status.success) {
-                    Navigator.pushReplacementNamed(
-                        context, RouteName.listProduct);
-                  }
+                  // if (state.status == Status.success) {
+                  //   Navigator.pushReplacementNamed(
+                  //       context, RouteName.listProduct);
+                  // }
                 },
                 builder: (context, state) {
-                  return ElevatedButton(
-                    onPressed: () {
-                      context.read<CreateProductCubit>().insertProduct();
+                  Widget widget = ElevatedButton(
+                    onPressed: () async {
+                      final validate = _formKey.currentState?.validate();
+
+                      if (!validate!) return;
+
+                      final result = await context
+                          .read<CreateProductCubit>()
+                          .insertProduct();
+
+                      if (result) {
+                        Navigator.pushReplacementNamed(
+                            context, RouteName.listProduct);
+                        Utils.showToast(state.message, color: Colors.green);
+                      } else {
+                        Utils.showToast(state.message, color: Colors.red);
+                      }
                     },
                     child: Text("Save"),
                   );
+                  if (state.status == Status.loading) {
+                    return const CenterLoading();
+                  }
+                  return widget;
                 },
               ),
               SizedBox(

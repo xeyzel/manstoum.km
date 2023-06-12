@@ -25,21 +25,21 @@ class CreateProductCubit extends Cubit<CreateProductState> {
 
   void reset() => emit(CreateProductState());
 
-  void insertProduct() async {
+  Future<bool> insertProduct() async {
     if (state.WarehouseId.isEmpty) {
-      return;
+      return false;
     }
     if (state.imageFile == null) {
-      return;
+      return false;
     }
     if (state.name.isEmpty) {
-      return;
+      return false;
     }
     if (state.description.isEmpty) {
-      return;
+      return false;
     }
     if (state.quantity == 0) {
-      return;
+      return false;
     }
 
     if (state.imageFile != null) {
@@ -61,15 +61,20 @@ class CreateProductCubit extends Cubit<CreateProductState> {
           if (insertResult) {
             emit(state.copyWith(
                 status: Status.success, message: 'Insert Success'));
+
             reset();
           }
         }
+        return true;
       } on FirebaseException catch (error) {
         emit(state.copyWith(
-            status: Status.failure, message: '${error.message}'));
+          status: Status.failure,
+          message: '${error.message}',
+        ));
+        return false;
       }
     }
-
+    return false;
 // Future<bool> insertProduct() async {
 //   emit(state.copyWith(status: Status.loading));
 //   try {} catch (e) {}
