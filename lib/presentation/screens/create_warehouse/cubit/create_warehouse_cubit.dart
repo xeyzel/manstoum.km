@@ -36,6 +36,37 @@ class CreateWarehouseCubit extends Cubit<CreateWarehouseState> {
     }
   }
 
+  void updateWarehoue(Warehouse warehouse) async {
+    emit(state.copyWith(status: Status.loading));
+    try {
+      final result = await _repository.updateOneWarehouse(warehouse);
+
+      if (result) {
+        emit(state.copyWith(status: Status.success));
+      }
+    } on FirebaseException catch (error) {
+      emit(state.copyWith(
+        status: Status.failure,
+        message: '${error.message}',
+      ));
+    }
+  }
+
+  void deleteOneWarehouse(String id) async {
+    try {
+      final result = await _repository.deleteOneWarehouse(id);
+      final warehouses = await _repository.findAllWarehouse();
+      if (result) {
+        emit(state.copyWith(status: Status.success, warehouses: warehouses));
+      }
+    } on FirebaseException catch (error) {
+      emit(state.copyWith(
+        status: Status.failure,
+        message: '${error.message}',
+      ));
+    }
+  }
+
   void findAllWarehouse() async {
     emit(state.copyWith(status: Status.loading));
     try {

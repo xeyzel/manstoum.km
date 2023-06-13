@@ -33,7 +33,23 @@ class WarehouseProvider {
     }
   }
 
-  void updateOne() {}
+  Future<bool> updateOne(Warehouse warehouse) async {
+    final data = warehouse.toJson();
+    data.remove('id');
+    try {
+      await _collection.doc(warehouse.id).update(data);
+      return true;
+    } on FirebaseException {
+      rethrow;
+    }
+  }
 
-  void deleteOne() {}
+  Future<bool> deleteOne(String id) async {
+    try {
+      await _collection.doc(id).delete();
+      return true;
+    } on FirebaseException {
+      rethrow;
+    }
+  }
 }

@@ -54,6 +54,7 @@ class CreateProductCubit extends Cubit<CreateProductState> {
             description: state.description,
             quantity: state.quantity,
             image: result,
+            createdAt: DateTime.now().toIso8601String(),
           );
 
           final insertResult = await _repository.insertProduct(product);
@@ -75,16 +76,15 @@ class CreateProductCubit extends Cubit<CreateProductState> {
       }
     }
     return false;
-// Future<bool> insertProduct() async {
-//   emit(state.copyWith(status: Status.loading));
-//   try {} catch (e) {}
-// }
   }
 
-  void findAllProduct() async {
+  void setSelectedWarehouseId(String? value) =>
+      emit(state.copyWith(selectedWarehouseId: value));
+
+  void findAllProduct([String? warehouseId]) async {
     emit(state.copyWith(status: Status.loading));
     try {
-      final products = await _repository.findAllProduct();
+      final products = await _repository.findAllProduct(warehouseId);
 
       final updateProducts = products.map((e) async {
         final warehouse = await _repository.findOneWarehouse(e.warehouseId);
@@ -95,6 +95,34 @@ class CreateProductCubit extends Cubit<CreateProductState> {
 
       emit(state.copyWith(status: Status.success, products: excecutor));
     } on FirebaseException catch (error) {
+      emit(state.copyWith(status: Status.failure, message: '${error.message}'));
+    }
+  }
+
+  void updateProduct() {}
+
+  void deleteProduct(String id, bool isFromList, [String? warehouseId]) async {
+
+    if(!isFromList) {
+      emit(state.copyWith(status: Status.loading));
+    }
+
+    try {
+
+      final resultDelete = await _repository
+      .deleteOneProduct(id);
+
+      final products = await _repository.findAllProduct(warehouseId);
+
+      final updateProducts = products.map((e) async {
+        final warehouse = await _repository.findOneWarehouse(e.warehouseId);
+        return e.copyWith(warehouseName: warehouse.name);
+      });
+
+      final excecutor = await Future.wait(updateProducts);
+
+      emit(state.copyWith(status: Status.success, products: excecutor));
+    }on FirebaseException catch(error) {
       emit(state.copyWith(status: Status.failure, message: '${error.message}'));
     }
   }

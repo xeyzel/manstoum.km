@@ -25,6 +25,7 @@ mixin _$CreateProductState {
   int get price => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
   Iterable<Product> get products => throw _privateConstructorUsedError;
+  String? get selectedWarehouseId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CreateProductStateCopyWith<CreateProductState> get copyWith =>
@@ -46,7 +47,8 @@ abstract class $CreateProductStateCopyWith<$Res> {
       String WarehouseId,
       int price,
       int quantity,
-      Iterable<Product> products});
+      Iterable<Product> products,
+      String? selectedWarehouseId});
 }
 
 /// @nodoc
@@ -71,6 +73,7 @@ class _$CreateProductStateCopyWithImpl<$Res, $Val extends CreateProductState>
     Object? price = null,
     Object? quantity = null,
     Object? products = null,
+    Object? selectedWarehouseId = freezed,
   }) {
     return _then(_value.copyWith(
       imageFile: freezed == imageFile
@@ -109,6 +112,10 @@ class _$CreateProductStateCopyWithImpl<$Res, $Val extends CreateProductState>
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
               as Iterable<Product>,
+      selectedWarehouseId: freezed == selectedWarehouseId
+          ? _value.selectedWarehouseId
+          : selectedWarehouseId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -130,7 +137,8 @@ abstract class _$$_CreateProductStateCopyWith<$Res>
       String WarehouseId,
       int price,
       int quantity,
-      Iterable<Product> products});
+      Iterable<Product> products,
+      String? selectedWarehouseId});
 }
 
 /// @nodoc
@@ -153,6 +161,7 @@ class __$$_CreateProductStateCopyWithImpl<$Res>
     Object? price = null,
     Object? quantity = null,
     Object? products = null,
+    Object? selectedWarehouseId = freezed,
   }) {
     return _then(_$_CreateProductState(
       imageFile: freezed == imageFile
@@ -191,6 +200,10 @@ class __$$_CreateProductStateCopyWithImpl<$Res>
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
               as Iterable<Product>,
+      selectedWarehouseId: freezed == selectedWarehouseId
+          ? _value.selectedWarehouseId
+          : selectedWarehouseId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -207,7 +220,8 @@ class _$_CreateProductState implements _CreateProductState {
       this.WarehouseId = '',
       this.price = 0,
       this.quantity = 0,
-      this.products = const []});
+      this.products = const [],
+      this.selectedWarehouseId});
 
   @override
   final XFile? imageFile;
@@ -235,10 +249,12 @@ class _$_CreateProductState implements _CreateProductState {
   @override
   @JsonKey()
   final Iterable<Product> products;
+  @override
+  final String? selectedWarehouseId;
 
   @override
   String toString() {
-    return 'CreateProductState(imageFile: $imageFile, status: $status, name: $name, description: $description, message: $message, WarehouseId: $WarehouseId, price: $price, quantity: $quantity, products: $products)';
+    return 'CreateProductState(imageFile: $imageFile, status: $status, name: $name, description: $description, message: $message, WarehouseId: $WarehouseId, price: $price, quantity: $quantity, products: $products, selectedWarehouseId: $selectedWarehouseId)';
   }
 
   @override
@@ -258,7 +274,9 @@ class _$_CreateProductState implements _CreateProductState {
             (identical(other.price, price) || other.price == price) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
-            const DeepCollectionEquality().equals(other.products, products));
+            const DeepCollectionEquality().equals(other.products, products) &&
+            (identical(other.selectedWarehouseId, selectedWarehouseId) ||
+                other.selectedWarehouseId == selectedWarehouseId));
   }
 
   @override
@@ -272,7 +290,8 @@ class _$_CreateProductState implements _CreateProductState {
       WarehouseId,
       price,
       quantity,
-      const DeepCollectionEquality().hash(products));
+      const DeepCollectionEquality().hash(products),
+      selectedWarehouseId);
 
   @JsonKey(ignore: true)
   @override
@@ -292,7 +311,8 @@ abstract class _CreateProductState implements CreateProductState {
       final String WarehouseId,
       final int price,
       final int quantity,
-      final Iterable<Product> products}) = _$_CreateProductState;
+      final Iterable<Product> products,
+      final String? selectedWarehouseId}) = _$_CreateProductState;
 
   @override
   XFile? get imageFile;
@@ -312,6 +332,8 @@ abstract class _CreateProductState implements CreateProductState {
   int get quantity;
   @override
   Iterable<Product> get products;
+  @override
+  String? get selectedWarehouseId;
   @override
   @JsonKey(ignore: true)
   _$$_CreateProductStateCopyWith<_$_CreateProductState> get copyWith =>

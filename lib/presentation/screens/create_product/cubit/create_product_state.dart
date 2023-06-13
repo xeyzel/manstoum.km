@@ -17,5 +17,6 @@ class CreateProductState with _$CreateProductState {
     @Default(0) int price,
     @Default(0) int quantity,
     @Default([]) Iterable<Product> products,
+    String? selectedWarehouseId,
   }) = _CreateProductState;
 }

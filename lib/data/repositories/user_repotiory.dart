@@ -22,6 +22,7 @@ class UserRepository {
 
   Future<String> login(Login login) => _userProvider.login(login);
 
+  // Shared Preferences Management
   Future<User> getUser() async {
     final userId = await getUserId();
     final user = await _userProvider.getUser(userId!);
@@ -48,18 +49,26 @@ class UserRepository {
   Future<Warehouse> findOneWarehouse(String warehouseId) =>
       _warehouseProvider.findOne(warehouseId);
 
+  Future<bool> updateOneWarehouse(Warehouse warehouse) =>
+      _warehouseProvider.updateOne(warehouse);
+
+  Future<bool> deleteOneWarehouse(String warehouseId) => _warehouseProvider.deleteOne(warehouseId);
+
   //Product Management
   Future<bool> insertProduct(Product product) async {
     final userId = (await getUserId())!;
     return _productProvider.insertOne(product.copyWith(userId: userId));
   }
 
-// Storage Management
+  Future<bool> deleteOneProduct(String id) => _productProvider.deleteOne(id);
+
+  // Storage Management
   Future<String?> uploadImage(XFile imageFile) =>
       _cloudinaryProvider.uploadImage(imageFile);
-// get product
-  Future<Iterable<Product>> findAllProduct() async {
+
+  // get product
+  Future<Iterable<Product>> findAllProduct([String? warehouseId]) async {
     final userId = (await getUserId())!;
-    return _productProvider.findAll(userId);
+    return _productProvider.findAll(userId, warehouseId);
   }
 }

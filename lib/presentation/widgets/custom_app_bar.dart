@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final Widget? leading;
   final List<Widget>? actions;
@@ -17,6 +16,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      iconTheme: Theme.of(context).iconTheme.copyWith(color: Colors.black),
       backgroundColor: Colors.white,
       leading: leading,
       actions: actions,

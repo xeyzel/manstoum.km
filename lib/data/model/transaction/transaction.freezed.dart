@@ -21,13 +21,12 @@ Transaction _$TransactionFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Transaction {
   String get id => throw _privateConstructorUsedError;
-  String get productId => throw _privateConstructorUsedError;
-  String get warehouseId => throw _privateConstructorUsedError;
-  String get userId => throw _privateConstructorUsedError;
-  int get quantity => throw _privateConstructorUsedError;
-  int get price => throw _privateConstructorUsedError;
-  String get operation => throw _privateConstructorUsedError;
-  String get image => throw _privateConstructorUsedError;
+  String get productName => throw _privateConstructorUsedError;
+  String get warehouseName => throw _privateConstructorUsedError;
+  String? get infoPrice => throw _privateConstructorUsedError;
+  String? get infoQuantity => throw _privateConstructorUsedError;
+  String get createdAt => throw _privateConstructorUsedError;
+  String get idTransaction => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,13 +42,12 @@ abstract class $TransactionCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      String productId,
-      String warehouseId,
-      String userId,
-      int quantity,
-      int price,
-      String operation,
-      String image});
+      String productName,
+      String warehouseName,
+      String? infoPrice,
+      String? infoQuantity,
+      String createdAt,
+      String idTransaction});
 }
 
 /// @nodoc
@@ -66,46 +64,41 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
   @override
   $Res call({
     Object? id = null,
-    Object? productId = null,
-    Object? warehouseId = null,
-    Object? userId = null,
-    Object? quantity = null,
-    Object? price = null,
-    Object? operation = null,
-    Object? image = null,
+    Object? productName = null,
+    Object? warehouseName = null,
+    Object? infoPrice = freezed,
+    Object? infoQuantity = freezed,
+    Object? createdAt = null,
+    Object? idTransaction = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      productId: null == productId
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      productName: null == productName
+          ? _value.productName
+          : productName // ignore: cast_nullable_to_non_nullable
               as String,
-      warehouseId: null == warehouseId
-          ? _value.warehouseId
-          : warehouseId // ignore: cast_nullable_to_non_nullable
+      warehouseName: null == warehouseName
+          ? _value.warehouseName
+          : warehouseName // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      infoPrice: freezed == infoPrice
+          ? _value.infoPrice
+          : infoPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      infoQuantity: freezed == infoQuantity
+          ? _value.infoQuantity
+          : infoQuantity // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
-      quantity: null == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as int,
-      operation: null == operation
-          ? _value.operation
-          : operation // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      idTransaction: null == idTransaction
+          ? _value.idTransaction
+          : idTransaction // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -121,13 +114,12 @@ abstract class _$$_TransactionCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      String productId,
-      String warehouseId,
-      String userId,
-      int quantity,
-      int price,
-      String operation,
-      String image});
+      String productName,
+      String warehouseName,
+      String? infoPrice,
+      String? infoQuantity,
+      String createdAt,
+      String idTransaction});
 }
 
 /// @nodoc
@@ -142,46 +134,41 @@ class __$$_TransactionCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? productId = null,
-    Object? warehouseId = null,
-    Object? userId = null,
-    Object? quantity = null,
-    Object? price = null,
-    Object? operation = null,
-    Object? image = null,
+    Object? productName = null,
+    Object? warehouseName = null,
+    Object? infoPrice = freezed,
+    Object? infoQuantity = freezed,
+    Object? createdAt = null,
+    Object? idTransaction = null,
   }) {
     return _then(_$_Transaction(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      productId: null == productId
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
+      productName: null == productName
+          ? _value.productName
+          : productName // ignore: cast_nullable_to_non_nullable
               as String,
-      warehouseId: null == warehouseId
-          ? _value.warehouseId
-          : warehouseId // ignore: cast_nullable_to_non_nullable
+      warehouseName: null == warehouseName
+          ? _value.warehouseName
+          : warehouseName // ignore: cast_nullable_to_non_nullable
               as String,
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      infoPrice: freezed == infoPrice
+          ? _value.infoPrice
+          : infoPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      infoQuantity: freezed == infoQuantity
+          ? _value.infoQuantity
+          : infoQuantity // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
-      quantity: null == quantity
-          ? _value.quantity
-          : quantity // ignore: cast_nullable_to_non_nullable
-              as int,
-      price: null == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as int,
-      operation: null == operation
-          ? _value.operation
-          : operation // ignore: cast_nullable_to_non_nullable
-              as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
+      idTransaction: null == idTransaction
+          ? _value.idTransaction
+          : idTransaction // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -192,13 +179,12 @@ class __$$_TransactionCopyWithImpl<$Res>
 class _$_Transaction implements _Transaction {
   const _$_Transaction(
       {this.id = "",
-      this.productId = "",
-      this.warehouseId = "",
-      this.userId = "",
-      this.quantity = 0,
-      this.price = 0,
-      this.operation = "",
-      this.image = ""});
+      this.productName = "",
+      this.warehouseName = "",
+      this.infoPrice = "",
+      this.infoQuantity = "",
+      this.createdAt = "",
+      this.idTransaction = ""});
 
   factory _$_Transaction.fromJson(Map<String, dynamic> json) =>
       _$$_TransactionFromJson(json);
@@ -208,29 +194,26 @@ class _$_Transaction implements _Transaction {
   final String id;
   @override
   @JsonKey()
-  final String productId;
+  final String productName;
   @override
   @JsonKey()
-  final String warehouseId;
+  final String warehouseName;
   @override
   @JsonKey()
-  final String userId;
+  final String? infoPrice;
   @override
   @JsonKey()
-  final int quantity;
+  final String? infoQuantity;
   @override
   @JsonKey()
-  final int price;
+  final String createdAt;
   @override
   @JsonKey()
-  final String operation;
-  @override
-  @JsonKey()
-  final String image;
+  final String idTransaction;
 
   @override
   String toString() {
-    return 'Transaction(id: $id, productId: $productId, warehouseId: $warehouseId, userId: $userId, quantity: $quantity, price: $price, operation: $operation, image: $image)';
+    return 'Transaction(id: $id, productName: $productName, warehouseName: $warehouseName, infoPrice: $infoPrice, infoQuantity: $infoQuantity, createdAt: $createdAt, idTransaction: $idTransaction)';
   }
 
   @override
@@ -239,23 +222,24 @@ class _$_Transaction implements _Transaction {
         (other.runtimeType == runtimeType &&
             other is _$_Transaction &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.productId, productId) ||
-                other.productId == productId) &&
-            (identical(other.warehouseId, warehouseId) ||
-                other.warehouseId == warehouseId) &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.quantity, quantity) ||
-                other.quantity == quantity) &&
-            (identical(other.price, price) || other.price == price) &&
-            (identical(other.operation, operation) ||
-                other.operation == operation) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.productName, productName) ||
+                other.productName == productName) &&
+            (identical(other.warehouseName, warehouseName) ||
+                other.warehouseName == warehouseName) &&
+            (identical(other.infoPrice, infoPrice) ||
+                other.infoPrice == infoPrice) &&
+            (identical(other.infoQuantity, infoQuantity) ||
+                other.infoQuantity == infoQuantity) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.idTransaction, idTransaction) ||
+                other.idTransaction == idTransaction));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, productId, warehouseId,
-      userId, quantity, price, operation, image);
+  int get hashCode => Object.hash(runtimeType, id, productName, warehouseName,
+      infoPrice, infoQuantity, createdAt, idTransaction);
 
   @JsonKey(ignore: true)
   @override
@@ -274,13 +258,12 @@ class _$_Transaction implements _Transaction {
 abstract class _Transaction implements Transaction {
   const factory _Transaction(
       {final String id,
-      final String productId,
-      final String warehouseId,
-      final String userId,
-      final int quantity,
-      final int price,
-      final String operation,
-      final String image}) = _$_Transaction;
+      final String productName,
+      final String warehouseName,
+      final String? infoPrice,
+      final String? infoQuantity,
+      final String createdAt,
+      final String idTransaction}) = _$_Transaction;
 
   factory _Transaction.fromJson(Map<String, dynamic> json) =
       _$_Transaction.fromJson;
@@ -288,19 +271,17 @@ abstract class _Transaction implements Transaction {
   @override
   String get id;
   @override
-  String get productId;
+  String get productName;
   @override
-  String get warehouseId;
+  String get warehouseName;
   @override
-  String get userId;
+  String? get infoPrice;
   @override
-  int get quantity;
+  String? get infoQuantity;
   @override
-  int get price;
+  String get createdAt;
   @override
-  String get operation;
-  @override
-  String get image;
+  String get idTransaction;
   @override
   @JsonKey(ignore: true)
   _$$_TransactionCopyWith<_$_Transaction> get copyWith =>

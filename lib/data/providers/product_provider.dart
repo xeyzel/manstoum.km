@@ -16,18 +16,42 @@ class ProductProvider {
     }
   }
 
-  void deleteOne(String id) {}
+  Future<bool> deleteOne(String id) async {
+    try {
+      await _collection.doc(id).delete();
+      return true;
+    } on FirebaseException {
+      rethrow;
+    }
+  }
 
-  void updateOne(String id, Product product) {}
+  Future<bool> updateOne(Product product) async {
+    final id = product.id;
+    final data = product.toJson();
+    data.remove('id');
+
+    try {
+      await _collection.doc(id).update(product.toJson());
+      return true;
+    } on FirebaseException {
+      rethrow;
+    }
+  }
 
   void findOne(String id) {}
 
-  Future<Iterable<Product>> findAll(String userId) async {
+  Future<Iterable<Product>> findAll(String userId,
+      [String? warehouseId]) async {
     try {
-      final snapshot =
-          await _collection.where('userId', isEqualTo: userId).get();
+      var snapshot = _collection.where('userId', isEqualTo: userId);
 
-      final products = snapshot.docs
+      if (warehouseId != null) {
+        snapshot = snapshot.where('warehouseId', isEqualTo: warehouseId);
+      }
+
+      final snapshotFinal = await snapshot.get();
+
+      final products = snapshotFinal.docs
           .map((e) => Product.fromJson(e.data()).copyWith(id: e.id));
       return products;
     } on FirebaseException {

@@ -7,13 +7,12 @@ part 'transaction.g.dart';
 class Transaction with _$Transaction {
   const factory Transaction({
     @Default("") String id,
-    @Default("") String productId,
-    @Default("") String warehouseId,
-    @Default("") String userId,
-    @Default(0) int quantity,
-    @Default(0) int price,
-    @Default("") String operation,
-    @Default("") String image,
+    @Default("") String productName,
+    @Default("") String warehouseName,
+    @Default("") String? infoPrice,
+    @Default("") String? infoQuantity,
+    @Default("") String createdAt,
+    @Default("") String idTransaction,
   }) = _Transaction;
 
   factory Transaction.fromJson(Map<String, dynamic> json) =>
