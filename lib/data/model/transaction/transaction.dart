@@ -13,6 +13,7 @@ class Transaction with _$Transaction {
     @Default("") String? infoQuantity,
     @Default("") String createdAt,
     @Default("") String idTransaction,
+    @Default("") String userId,
   }) = _Transaction;
 
   factory Transaction.fromJson(Map<String, dynamic> json) =>

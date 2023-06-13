@@ -1,22 +1,29 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:inventory_app/data/model/warehouse/warehouse.dart';
+import 'package:cloud_firestore/cloud_firestore.dart' as firestore;
+import 'package:inventory_app/data/model/transaction/transaction.dart';
 
 class TransactionProvider {
-  static final _instance = FirebaseFirestore.instance;
+  static final _instance = firestore.FirebaseFirestore.instance;
   static final _collection = _instance.collection('transactions');
 
-  Future<bool> insertOne(Warehouse warehouse) async {
-    final data = warehouse.toJson();
+  Future<bool> insertOne(Transaction transaction) async {
+    final data = transaction.toJson();
     data.remove('id');
     try {
       await _collection.add(data);
       return true;
-    } on FirebaseException {
+    } on firestore.FirebaseException {
       rethrow;
     }
   }
 
-  void findAll() {
-    _collection.get();
+  Future<Iterable<Transaction>> findAll(String userId) async {
+    try {
+      final snapshot =
+          await _collection.where('userId', isEqualTo: userId).get();
+      return snapshot.docs
+          .map((e) => Transaction.fromJson(e.data()).copyWith(id: e.id));
+    } on firestore.FirebaseException {
+      rethrow;
+    }
   }
 }

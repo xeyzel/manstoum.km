@@ -9,7 +9,7 @@ class ProductProvider {
     try {
       final data = product.toJson();
       data.remove('id');
-      final products = await _collection.add(data);
+      await _collection.add(data);
       return true;
     } on FirebaseException {
       rethrow;

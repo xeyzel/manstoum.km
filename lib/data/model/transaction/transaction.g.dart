@@ -15,6 +15,7 @@ _$_Transaction _$$_TransactionFromJson(Map<String, dynamic> json) =>
       infoQuantity: json['infoQuantity'] as String? ?? "",
       createdAt: json['createdAt'] as String? ?? "",
       idTransaction: json['idTransaction'] as String? ?? "",
+      userId: json['userId'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$_TransactionToJson(_$_Transaction instance) =>
@@ -26,4 +27,5 @@ Map<String, dynamic> _$$_TransactionToJson(_$_Transaction instance) =>
       'infoQuantity': instance.infoQuantity,
       'createdAt': instance.createdAt,
       'idTransaction': instance.idTransaction,
+      'userId': instance.userId,
     };

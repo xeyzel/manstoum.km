@@ -2,11 +2,13 @@ import 'package:image_picker/image_picker.dart';
 import 'package:inventory_app/data/model/login/login.dart';
 import 'package:inventory_app/data/model/product/product.dart';
 import 'package:inventory_app/data/model/register/register.dart';
+import 'package:inventory_app/data/model/transaction/transaction.dart';
 import 'package:inventory_app/data/model/user/user.dart';
 import 'package:inventory_app/data/model/warehouse/warehouse.dart';
 import 'package:inventory_app/data/providers/cloudinary_provider.dart';
 import 'package:inventory_app/data/providers/product_provider.dart';
 import 'package:inventory_app/data/providers/shared_provider.dart';
+import 'package:inventory_app/data/providers/transaction_provider.dart';
 import 'package:inventory_app/data/providers/user_provider.dart';
 import 'package:inventory_app/data/providers/warehouse_provider.dart';
 
@@ -16,6 +18,7 @@ class UserRepository {
   final _warehouseProvider = WarehouseProvider();
   final _productProvider = ProductProvider();
   final _cloudinaryProvider = CloudinaryProvider();
+  final _transactionProvider = TransactionProvider();
 
   /// User Management
   Future<bool> register(Register register) => _userProvider.register(register);
@@ -52,7 +55,8 @@ class UserRepository {
   Future<bool> updateOneWarehouse(Warehouse warehouse) =>
       _warehouseProvider.updateOne(warehouse);
 
-  Future<bool> deleteOneWarehouse(String warehouseId) => _warehouseProvider.deleteOne(warehouseId);
+  Future<bool> deleteOneWarehouse(String warehouseId) =>
+      _warehouseProvider.deleteOne(warehouseId);
 
   //Product Management
   Future<bool> insertProduct(Product product) async {
@@ -62,6 +66,9 @@ class UserRepository {
 
   Future<bool> deleteOneProduct(String id) => _productProvider.deleteOne(id);
 
+  Future<bool> updateOneProduct(Product product) =>
+      _productProvider.updateOne(product);
+
   // Storage Management
   Future<String?> uploadImage(XFile imageFile) =>
       _cloudinaryProvider.uploadImage(imageFile);
@@ -70,5 +77,16 @@ class UserRepository {
   Future<Iterable<Product>> findAllProduct([String? warehouseId]) async {
     final userId = (await getUserId())!;
     return _productProvider.findAll(userId, warehouseId);
+  }
+
+  // Transaction Management
+  Future<Iterable<Transaction>> findAllTransactions() async {
+    final userId = (await getUserId())!;
+    return _transactionProvider.findAll(userId);
+  }
+
+  Future<bool> insertOneTransaction(Transaction transaction) async {
+    final userId = (await getUserId())!;
+    return _transactionProvider.insertOne(transaction.copyWith(userId: userId));
   }
 }

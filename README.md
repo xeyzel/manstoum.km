@@ -7,11 +7,11 @@
 - update warehouse
 - delete warehouse
 - delete product
+- update product
+- read transaction
 
 ## On going
 
-- update product
-- read transaction
 
 
 ## flutter pub run build_runner build --delete-conflicting-outputs

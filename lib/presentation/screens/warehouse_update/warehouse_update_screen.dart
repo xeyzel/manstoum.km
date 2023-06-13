@@ -55,7 +55,7 @@ class _WarehouseUpdateScreenState extends State<WarehouseUpdateScreen> {
             SizedBox(height: 16),
             TextField(
               controller: _address,
-              decoration: InputDecoration(label: Text('Addreess')),
+              decoration: InputDecoration(label: Text('Address')),
             ),
             SizedBox(height: 24),
             SizedBox(

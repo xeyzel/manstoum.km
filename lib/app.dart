@@ -9,10 +9,12 @@ import 'package:inventory_app/presentation/screens/create_warehouse/cubit/create
 import 'package:inventory_app/presentation/screens/login/cubit/login_cubit.dart';
 import 'package:inventory_app/presentation/screens/login/login_screen.dart';
 import 'package:inventory_app/presentation/screens/product/product_screen.dart';
+import 'package:inventory_app/presentation/screens/product_main_feature/cubit/product_main_feature_cubit.dart';
 import 'package:inventory_app/presentation/screens/profile/cubit/profile_cubit.dart';
 import 'package:inventory_app/presentation/screens/register/cubit/register_cubit.dart';
 import 'package:inventory_app/presentation/screens/register/register_screen.dart';
 import 'package:inventory_app/presentation/screens/splash/cubit/splash_cubit.dart';
+import 'package:inventory_app/presentation/screens/transaction/cubit/transaction_cubit.dart';
 import 'package:inventory_app/presentation/screens/transaction/transaction_screen.dart';
 
 import 'presentation/screens/home/bloc/home_cubit.dart';
@@ -29,6 +31,8 @@ class App extends StatelessWidget {
         BlocProvider(create: (context) => HomeCubit()),
         BlocProvider(create: (context) => RegisterCubit()),
         BlocProvider(create: (context) => LoginCubit()),
+        BlocProvider(create: (context) => ProductMainFeatureCubit()),
+        BlocProvider(create: (context) => TransactionCubit()),
         BlocProvider(create: (context) => SplashCubit()),
         BlocProvider(create: (context) => ProfileCubit()),
         BlocProvider(create: (context) => CreateWarehouseCubit()),

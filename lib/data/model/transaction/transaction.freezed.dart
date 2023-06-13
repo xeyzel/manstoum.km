@@ -27,6 +27,7 @@ mixin _$Transaction {
   String? get infoQuantity => throw _privateConstructorUsedError;
   String get createdAt => throw _privateConstructorUsedError;
   String get idTransaction => throw _privateConstructorUsedError;
+  String get userId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,7 +48,8 @@ abstract class $TransactionCopyWith<$Res> {
       String? infoPrice,
       String? infoQuantity,
       String createdAt,
-      String idTransaction});
+      String idTransaction,
+      String userId});
 }
 
 /// @nodoc
@@ -70,6 +72,7 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
     Object? infoQuantity = freezed,
     Object? createdAt = null,
     Object? idTransaction = null,
+    Object? userId = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -100,6 +103,10 @@ class _$TransactionCopyWithImpl<$Res, $Val extends Transaction>
           ? _value.idTransaction
           : idTransaction // ignore: cast_nullable_to_non_nullable
               as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -119,7 +126,8 @@ abstract class _$$_TransactionCopyWith<$Res>
       String? infoPrice,
       String? infoQuantity,
       String createdAt,
-      String idTransaction});
+      String idTransaction,
+      String userId});
 }
 
 /// @nodoc
@@ -140,6 +148,7 @@ class __$$_TransactionCopyWithImpl<$Res>
     Object? infoQuantity = freezed,
     Object? createdAt = null,
     Object? idTransaction = null,
+    Object? userId = null,
   }) {
     return _then(_$_Transaction(
       id: null == id
@@ -170,6 +179,10 @@ class __$$_TransactionCopyWithImpl<$Res>
           ? _value.idTransaction
           : idTransaction // ignore: cast_nullable_to_non_nullable
               as String,
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -184,7 +197,8 @@ class _$_Transaction implements _Transaction {
       this.infoPrice = "",
       this.infoQuantity = "",
       this.createdAt = "",
-      this.idTransaction = ""});
+      this.idTransaction = "",
+      this.userId = ""});
 
   factory _$_Transaction.fromJson(Map<String, dynamic> json) =>
       _$$_TransactionFromJson(json);
@@ -210,10 +224,13 @@ class _$_Transaction implements _Transaction {
   @override
   @JsonKey()
   final String idTransaction;
+  @override
+  @JsonKey()
+  final String userId;
 
   @override
   String toString() {
-    return 'Transaction(id: $id, productName: $productName, warehouseName: $warehouseName, infoPrice: $infoPrice, infoQuantity: $infoQuantity, createdAt: $createdAt, idTransaction: $idTransaction)';
+    return 'Transaction(id: $id, productName: $productName, warehouseName: $warehouseName, infoPrice: $infoPrice, infoQuantity: $infoQuantity, createdAt: $createdAt, idTransaction: $idTransaction, userId: $userId)';
   }
 
   @override
@@ -233,13 +250,14 @@ class _$_Transaction implements _Transaction {
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.idTransaction, idTransaction) ||
-                other.idTransaction == idTransaction));
+                other.idTransaction == idTransaction) &&
+            (identical(other.userId, userId) || other.userId == userId));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, productName, warehouseName,
-      infoPrice, infoQuantity, createdAt, idTransaction);
+      infoPrice, infoQuantity, createdAt, idTransaction, userId);
 
   @JsonKey(ignore: true)
   @override
@@ -263,7 +281,8 @@ abstract class _Transaction implements Transaction {
       final String? infoPrice,
       final String? infoQuantity,
       final String createdAt,
-      final String idTransaction}) = _$_Transaction;
+      final String idTransaction,
+      final String userId}) = _$_Transaction;
 
   factory _Transaction.fromJson(Map<String, dynamic> json) =
       _$_Transaction.fromJson;
@@ -282,6 +301,8 @@ abstract class _Transaction implements Transaction {
   String get createdAt;
   @override
   String get idTransaction;
+  @override
+  String get userId;
   @override
   @JsonKey(ignore: true)
   _$$_TransactionCopyWith<_$_Transaction> get copyWith =>

@@ -84,7 +84,7 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    const Text('Hold For See Detail Warehouse'),
+                    const Text('Hold For See Warehouse Detail'),
                   ],
                 ),
               ),

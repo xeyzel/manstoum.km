@@ -5,6 +5,8 @@ import 'package:inventory_app/core/constant/string_resource.dart';
 import 'package:inventory_app/core/util/utils.dart';
 import 'package:inventory_app/presentation/screens/create_product/cubit/create_product_cubit.dart';
 import 'package:inventory_app/presentation/screens/create_product/cubit/create_product_state.dart';
+import 'package:inventory_app/presentation/screens/product_main_feature/cubit/product_main_feature_cubit.dart';
+import 'package:inventory_app/presentation/screens/product_main_feature/product_main_feature_screen.dart';
 import 'package:inventory_app/presentation/screens/product_update/product_update_screen.dart';
 import 'package:inventory_app/presentation/widgets/center_loading.dart';
 
@@ -58,10 +60,12 @@ class _ProductScreenState extends State<ProductScreen> {
               itemBuilder: (context, index) {
                 final product = state.products.elementAt(index);
                 return ListTile(
+
                   onTap: () {
+                    context.read<ProductMainFeatureCubit>().setProduct(product);
                     Navigator.push(context, MaterialPageRoute(
                       builder: (context) {
-                        return ProductUpdateScreen(
+                        return ProductMainFeatureScreen(
                           product: product,
                         );
                       },
