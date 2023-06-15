@@ -18,8 +18,8 @@ class CreateWarehouseCubit extends Cubit<CreateWarehouseState> {
     emit(state.copyWith(status: Status.loading));
     try {
       final warehouse = Warehouse(
-        name: state.name,
-        address: state.address,
+        name: state.name.trim(),
+        address: state.address.trim(),
       );
 
       final result = await _repository.insertWarehouse(warehouse);

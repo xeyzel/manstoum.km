@@ -41,23 +41,31 @@ class _WarehouseUpdateScreenState extends State<WarehouseUpdateScreen> {
       appBar: CustomAppBar(title: Utils.capital(widget.warehouse.name)),
       body: Container(
         alignment: Alignment.center,
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            const Text(
+              'Edit Warehouse Data',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 26),
             TextField(
               controller: _name,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'name',
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextField(
               controller: _address,
-              decoration: InputDecoration(label: Text('Address')),
+              decoration: const InputDecoration(label: Text('Address')),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             SizedBox(
               width: MediaQuery.of(context).size.width,
               child: BlocConsumer<CreateWarehouseCubit, CreateWarehouseState>(
@@ -86,7 +94,7 @@ class _WarehouseUpdateScreenState extends State<WarehouseUpdateScreen> {
                           .updateWarehoue(warehouse);
                       Navigator.pop(context);
                     },
-                    child: Text('Update'),
+                    child: const Text('Update'),
                   );
                 },
               ),

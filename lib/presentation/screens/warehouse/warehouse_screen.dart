@@ -76,15 +76,15 @@ class _WarehouseScreenState extends State<WarehouseScreen> {
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       'List Warehouses',
                       style: TextStyle(
                         fontSize: 24,
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    const Text('Hold For See Warehouse Detail'),
+                    Text('Hold For See Warehouse Detail'),
                   ],
                 ),
               ),

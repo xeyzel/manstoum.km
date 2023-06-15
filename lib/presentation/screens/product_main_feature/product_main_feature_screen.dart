@@ -27,7 +27,6 @@ class _ProductMainFeatureScreenState extends State<ProductMainFeatureScreen> {
     _price.text = widget.product.price.toString();
     _quantity.text = widget.product.quantity.toString();
 
-
     final bloc = context.read<ProductMainFeatureCubit>();
     bloc.setPrice(widget.product.price);
     bloc.setQuantity(widget.product.quantity);
@@ -44,23 +43,53 @@ class _ProductMainFeatureScreenState extends State<ProductMainFeatureScreen> {
     return Scaffold(
       body: Center(
         child: Card(
+          margin: const EdgeInsets.all(16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.network(widget.product.image, height: 100),
+              const Text(
+                'Change Price & Quantity',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                widget.product.name,
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Image.network(
+                widget.product.image,
+                height: 200,
+              ),
+              const SizedBox(height: 16),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Description: ${widget.product.description}',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
               TextField(
                 keyboardType: TextInputType.number,
                 controller: _price,
-                decoration: InputDecoration(
-
+                decoration: const InputDecoration(
                   label: Text('Price'),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextField(
                 keyboardType: TextInputType.number,
                 controller: _quantity,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   label: Text('Quantity'),
                 ),
               ),
@@ -69,15 +98,13 @@ class _ProductMainFeatureScreenState extends State<ProductMainFeatureScreen> {
                   return previous.status != current.status;
                 },
                 listener: (context, state) {
-
-                  if(state.status == Status.success) {
+                  if (state.status == Status.success) {
                     Navigator.pop(context);
                   }
-
                 },
                 builder: (context, state) {
                   if (state.status == Status.loading) {
-                    return CenterLoading();
+                    return const CenterLoading();
                   }
 
                   return ElevatedButton(
@@ -85,9 +112,10 @@ class _ProductMainFeatureScreenState extends State<ProductMainFeatureScreen> {
                       final price = int.parse(_price.text);
                       final quantity = int.parse(_quantity.text);
 
-
                       context.read<ProductMainFeatureCubit>().setPrice(price);
-                      context.read<ProductMainFeatureCubit>().setQuantity(quantity);
+                      context
+                          .read<ProductMainFeatureCubit>()
+                          .setQuantity(quantity);
 
                       final newProduct = widget.product.copyWith(
                         price: price,
@@ -98,7 +126,7 @@ class _ProductMainFeatureScreenState extends State<ProductMainFeatureScreen> {
                           .read<ProductMainFeatureCubit>()
                           .updateProduct(newProduct);
                     },
-                    child: Text('Save'),
+                    child: const Text('Save'),
                   );
                 },
               ),

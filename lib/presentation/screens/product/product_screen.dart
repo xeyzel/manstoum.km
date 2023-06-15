@@ -56,64 +56,98 @@ class _ProductScreenState extends State<ProductScreen> {
               );
             }
 
-            return ListView.separated(
-              itemBuilder: (context, index) {
-                final product = state.products.elementAt(index);
-                return ListTile(
-
-                  onTap: () {
-                    context.read<ProductMainFeatureCubit>().setProduct(product);
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) {
-                        return ProductMainFeatureScreen(
-                          product: product,
-                        );
-                      },
-                    ));
-                  },
-                  leading: CircleAvatar(
-                    radius: 40,
-                    backgroundImage: NetworkImage(product.image),
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Text(
+                      '~ Hold For Change Product Name ~',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-                  title: Text(Utils.capital(product.name)),
-                  subtitle: Text("Description: ${product.description}"),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: const Text('Delete Product ?'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  context
-                                      .read<CreateProductCubit>()
-                                      .deleteProduct(product.id, true);
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Yes'),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('No'),
-                              ),
-                            ],
-                          );
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      final product = state.products.elementAt(index);
+                      return ListTile(
+                        onLongPress: () {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return ProductUpdateScreen(product: product);
+                            },
+                          ));
                         },
+                        onTap: () {
+                          context
+                              .read<ProductMainFeatureCubit>()
+                              .setProduct(product);
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return ProductMainFeatureScreen(
+                                product: product,
+                              );
+                            },
+                          ));
+                        },
+                        leading: CircleAvatar(
+                          radius: 40,
+                          backgroundImage: NetworkImage(product.image),
+                        ),
+                        title: Text(Utils.capital(product.name)),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Description: ${product.description}"),
+                            Text("Price: ${product.price}"),
+                            Text("Quantity: ${product.quantity}"),
+                          ],
+                        ),
+                        trailing: IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: const Text('Delete Product ?'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        context
+                                            .read<CreateProductCubit>()
+                                            .deleteProduct(product.id, true);
+                                        Navigator.pop(context);
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('Yes'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('No'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                        ),
                       );
                     },
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 16),
+                    itemCount: state.products.length,
                   ),
-                );
-              },
-              separatorBuilder: (context, index) => const SizedBox(height: 16),
-              itemCount: state.products.length,
+                  const SizedBox(height: 16),
+                ],
+              ),
             );
-
-            return const SizedBox.shrink();
           },
         ),
       ),

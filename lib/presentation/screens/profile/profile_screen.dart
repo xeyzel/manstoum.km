@@ -40,11 +40,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
               builder: (context, state) {
                 return Column(
                   children: [
-                    Text(
-                      state.user.name,
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                          color: Colors.amber[50],
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          )),
+                      child: Text('Name : ${state.user.name}'),
                     ),
-                    Text(
-                      state.user.email,
+                    SizedBox(height: 16),
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                          color: Colors.amber[50],
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          )),
+                      child: Text('Email : ${state.user.email}'),
                     ),
                   ],
                 );

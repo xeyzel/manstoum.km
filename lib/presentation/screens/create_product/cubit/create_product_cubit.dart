@@ -51,7 +51,7 @@ class CreateProductCubit extends Cubit<CreateProductState> {
             warehouseId: state.WarehouseId,
             name: state.name.trim(),
             price: state.price,
-            description: state.description,
+            description: state.description.trim(),
             quantity: state.quantity,
             image: result,
             createdAt: DateTime.now().toIso8601String(),
@@ -99,18 +99,29 @@ class CreateProductCubit extends Cubit<CreateProductState> {
     }
   }
 
-  void updateProduct() {}
+  void updateProduct(Product product) async {
+    emit(state.copyWith(status: Status.loading));
+    try {
+      final result = await _repository.updateOneProduct(product);
+
+      if (result) {
+        emit(state.copyWith(status: Status.success));
+      }
+    } on FirebaseException catch (error) {
+      emit(state.copyWith(
+        status: Status.failure,
+        message: '${error.message}',
+      ));
+    }
+  }
 
   void deleteProduct(String id, bool isFromList, [String? warehouseId]) async {
-
-    if(!isFromList) {
+    if (!isFromList) {
       emit(state.copyWith(status: Status.loading));
     }
 
     try {
-
-      final resultDelete = await _repository
-      .deleteOneProduct(id);
+      final resultDelete = await _repository.deleteOneProduct(id);
 
       final products = await _repository.findAllProduct(warehouseId);
 
@@ -122,7 +133,7 @@ class CreateProductCubit extends Cubit<CreateProductState> {
       final excecutor = await Future.wait(updateProducts);
 
       emit(state.copyWith(status: Status.success, products: excecutor));
-    }on FirebaseException catch(error) {
+    } on FirebaseException catch (error) {
       emit(state.copyWith(status: Status.failure, message: '${error.message}'));
     }
   }
