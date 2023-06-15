@@ -5,6 +5,7 @@ import 'package:inventory_app/data/model/product/product.dart';
 import 'package:inventory_app/presentation/screens/product_main_feature/cubit/product_main_feature_cubit.dart';
 import 'package:inventory_app/presentation/screens/product_main_feature/cubit/product_main_feature_state.dart';
 import 'package:inventory_app/presentation/widgets/center_loading.dart';
+import 'package:inventory_app/presentation/widgets/custom_app_bar.dart';
 
 class ProductMainFeatureScreen extends StatefulWidget {
   final Product product;
@@ -41,9 +42,10 @@ class _ProductMainFeatureScreenState extends State<ProductMainFeatureScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(title: 'Main Feature'),
       body: Center(
-        child: Card(
-          margin: const EdgeInsets.all(16),
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -54,14 +56,15 @@ class _ProductMainFeatureScreenState extends State<ProductMainFeatureScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 36),
               Text(
                 widget.product.name,
                 style: const TextStyle(
-                  fontSize: 24,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              const SizedBox(height: 16),
               Image.network(
                 widget.product.image,
                 height: 200,
@@ -71,6 +74,16 @@ class _ProductMainFeatureScreenState extends State<ProductMainFeatureScreen> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Description: ${widget.product.description}',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Warehouse: ${widget.product.warehouseName}',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,

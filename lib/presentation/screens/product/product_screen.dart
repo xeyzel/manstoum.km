@@ -103,6 +103,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text("Description: ${product.description}"),
+                            Text("Warehouse: ${product.warehouseName}"),
                             Text("Price: ${product.price}"),
                             Text("Quantity: ${product.quantity}"),
                           ],

@@ -8,8 +8,10 @@ String repository(String uang) {
   return uang;
 }
 
+insertOne(warehouse) {}
+
 void bloc(String uang) {
-print(uang);
+  print(uang);
 }
 
 void main() {
@@ -19,9 +21,6 @@ void main() {
       final uangAyah = provider('10000');
       final uangKaka = repository(uangAyah);
       bloc(uangKaka);
-
-
-
     },
   );
 }

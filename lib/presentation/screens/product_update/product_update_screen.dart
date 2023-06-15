@@ -77,13 +77,13 @@ class _ProductUpdateScreenState extends State<ProductUpdateScreen> {
                   controller: _name,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'name',
+                    labelText: 'Name',
                   ),
                 ),
                 const SizedBox(height: 16),
                 TextField(
                   controller: _description,
-                  decoration: const InputDecoration(label: Text('Address')),
+                  decoration: const InputDecoration(label: Text('Description')),
                 ),
                 const SizedBox(height: 24),
                 SizedBox(
